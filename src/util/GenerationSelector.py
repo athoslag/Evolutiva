@@ -1,25 +1,23 @@
 import operator
 
 from src.domain.Individual import Individual
+from src.util.AbstractGeneration import AbstractGeneration
 
 
-class GenerationSelector(object):
+class GenerationSelector(AbstractGeneration):
 
-    def __init__(self, evaluator, recombination_rate = 0.25, t_max=100):
-        self.evaluator = evaluator
-        self.t_max = t_max
-        self.r_rate = recombination_rate
+    def __init__(self, popsize, evaluator, recombination_rate=0.25, t_max=100):
+        super().__init__(popsize, evaluator, recombination_rate, t_max)
+
 
     def next_generation(self, individuals):
-        pop_fitness = []
 
-        for individual in individuals:
-            fitness = self.evaluator.evaluate(individual)
-            wrapper = IndividualScoreWrapper(individual, fitness)
-            pop_fitness.append(wrapper)
+        pop_fitness = self.evaluate_generation(individuals)
 
+        array_cut = int(pow(self.popsize, 0.5))
+        remaining = self.popsize - pow(array_cut, 2)
         pop_fitness = sorted(pop_fitness, key=operator.attrgetter('score'), reverse=True)
-        pop_fitness = pop_fitness[:2]
+        pop_fitness = pop_fitness[:array_cut]
 
         new_pop = []
         for p1 in pop_fitness:
@@ -35,11 +33,5 @@ class GenerationSelector(object):
         return new_pop
 
 
-
-class IndividualScoreWrapper(object):
-
-    def __init__(self, individual, score):
-        self.individual = individual
-        self.score = score
 
 

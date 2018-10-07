@@ -1,3 +1,4 @@
+from src.benchmark.BenchmarkRunner import BenchmarkRunner
 from src.util.FileReader import FileReader
 from src.util.FitnessEvaluator import FitnessEvaluator
 from src.util.GenerationSelector import GenerationSelector
@@ -20,18 +21,8 @@ if __name__ == '__main__':
     fr.read()
 
     fitness_evaluator = FitnessEvaluator(fr.weights, fr.max_size)
-    generation_selector = GenerationSelector(fitness_evaluator)
-    generator = IndividualsGenerator()
+    generation_selector = GenerationSelector(10, fitness_evaluator)
+    generator = IndividualsGenerator(len(fr.weights))
 
-    individuals = generator.generate_random_individuals(10, len(fr.weights))
-
-    iteration = 0
-    while True:
-        if iteration % 100 == 0:
-            print(iteration)
-        iteration+=1
-        individuals = generation_selector.next_generation(individuals)
-
-
-
-    print('pim')
+    benchmark = BenchmarkRunner(fitness_evaluator, generation_selector, generator)
+    benchmark.run_benchmark()
