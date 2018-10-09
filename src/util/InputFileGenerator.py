@@ -1,11 +1,16 @@
+from src.util.InputGenerator import InputGenerator
 
 
 class InputFileGenerator(object):
 
-    def __init__(self, path):
+    def __init__(self, path: str, input_generator: InputGenerator):
         self.path = path
+        self.input_generator = input_generator
 
-    def generateFile(self, data, sum):
+    def generate_file(self):
+
+        data, sum = self.input_generator.generate_input()
+
         with open(self.path, "w+") as file:
             file.write(str(len(data)))
             file.write("\n")
