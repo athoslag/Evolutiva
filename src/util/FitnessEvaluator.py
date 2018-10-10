@@ -10,6 +10,7 @@ class FitnessEvaluator(object):
         if knapsack_sum > self.size:
             return -1
         if knapsack_sum == self.size:
-            print("AEEEEEEEEE")
+            print([y for (x, y) in zip(individual.genotype.dna, self.weights) if x > 0])
+#            print("AEEEEEEEEE")
             exit(0)
         return knapsack_sum

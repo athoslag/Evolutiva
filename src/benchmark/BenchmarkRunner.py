@@ -13,6 +13,6 @@ class BenchmarkRunner(object):
         iteration = 0
         while True:
             if iteration % 100 == 0:
-                print(iteration)
+                print('pim ' + str(iteration))
             iteration += 1
             individuals = self.generation_selector.next_generation(individuals)

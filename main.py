@@ -9,15 +9,9 @@ from src.util.InputGenerator import InputGenerator
 if __name__ == '__main__':
 
     # gera arquivão
-    # ig = InputGenerator(20, 750)
-    #
-    # fg = InputFileGenerator("./teste")
-    #
-    # data, sum = ig.generateInput()
-    # fg.generateFile(data, sum)
-    # exit(0)
+    
 
-    fr = FileReader("./teste")
+    fr = FileReader("./teste_new")
     fr.read()
 
     fitness_evaluator = FitnessEvaluator(fr.weights, fr.max_size)
