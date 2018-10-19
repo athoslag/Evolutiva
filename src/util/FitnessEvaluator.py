@@ -1,7 +1,6 @@
-
-'''
+"""
 Responsável por avaliar o fitness de um determinado indivíduo
-'''
+"""
 class FitnessEvaluator(object):
 
     def __init__(self, weights, size):

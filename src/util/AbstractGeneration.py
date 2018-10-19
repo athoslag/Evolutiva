@@ -1,8 +1,7 @@
-
-'''
+"""
 Classe abstrata que representa uma geração de uma população. Responsável por avaliar uma populção em relação ao
 fitness dela e gerar a próxima geração.
-'''
+"""
 class AbstractGeneration(object):
 
     def __init__(self, popsize, evaluator, recombination_rate, t_max):
