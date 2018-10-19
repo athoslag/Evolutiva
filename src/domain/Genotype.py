@@ -1,6 +1,9 @@
 import numpy as np
 
-
+'''
+Classe responsável por manter o 'dna' de um indivíduo (Individual). 
+O dna pode sofrer mutações a uma taxa m_rate entre [0, 1] e sofrer crossover com outro genótipo.
+'''
 class Genotype(object):
 
     def __init__(self, dna, m_rate):

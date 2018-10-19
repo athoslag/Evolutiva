@@ -3,12 +3,14 @@ import operator
 from src.domain.Individual import Individual
 from src.util.AbstractGeneration import AbstractGeneration
 
-
-class GenerationSelector(AbstractGeneration):
+'''
+Classe de teste 1 para selecionar a próxima geração da população. Baseado no método da roleta com os
+melhores indivíduos da geração anterior.
+'''
+class ElitistGenerationSelector(AbstractGeneration):
 
     def __init__(self, popsize, evaluator, recombination_rate=0.25, t_max=100):
         super().__init__(popsize, evaluator, recombination_rate, t_max)
-
 
     def next_generation(self, individuals):
 
@@ -30,7 +32,7 @@ class GenerationSelector(AbstractGeneration):
                 new_pop.append(Individual(new_1))
                 new_pop.append(Individual(new_2))
 
-        return new_pop
+        return new_pop, pop_fitness
 
 
 

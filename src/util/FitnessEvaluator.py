@@ -1,4 +1,7 @@
 
+'''
+Responsável por avaliar o fitness de um determinado indivíduo
+'''
 class FitnessEvaluator(object):
 
     def __init__(self, weights, size):
@@ -11,6 +14,4 @@ class FitnessEvaluator(object):
             return -1
         if knapsack_sum == self.size:
             print([y for (x, y) in zip(individual.genotype.dna, self.weights) if x > 0])
-#            print("AEEEEEEEEE")
-            exit(0)
         return knapsack_sum

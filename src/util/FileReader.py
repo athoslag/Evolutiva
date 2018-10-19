@@ -1,4 +1,8 @@
 
+'''
+Lê um arquivo de entrada com os dados de teste e mantém as informações a respeito dele.
+'''
+
 class FileReader(object):
 
     def __init__(self, path):

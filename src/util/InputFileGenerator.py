@@ -1,6 +1,9 @@
 from src.util.InputGenerator import InputGenerator
 
 
+'''
+Responsável por criar um arquivo com os dados para teste.
+'''
 class InputFileGenerator(object):
 
     def __init__(self, path: str, input_generator: InputGenerator):

@@ -4,6 +4,10 @@ from src.domain.Genotype import Genotype
 from src.domain.Individual import Individual
 
 
+'''
+Classe responsável por gerar uma população aleatória de indivíduos. 
+Usada para criar a primeira população de uma geração 
+'''
 class IndividualsGenerator(object):
 
     def __init__(self, total_genes):
