@@ -23,10 +23,12 @@ class GraphPlotter(object):
         plt.ylabel(label)
         return self
 
-    def add_data(self, x, y):
-        self.X.append(x)
-        self.Y.append(y)
+    def add_data(self, iteration, pop_fitness):
+        if iteration % 200 == 0:
+            self.X = self.X + [iteration]*len(pop_fitness)
+            self.Y = self.Y + [i.score for i in pop_fitness]
 
     def plot(self):
-        plt.plot(self.X, self.Y)
+        plt.ylim(bottom=0, top=max(self.Y))
+        plt.scatter(self.X, self.Y)
         plt.show()

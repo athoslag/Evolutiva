@@ -6,6 +6,7 @@ from src.util.ElitistGenerationSelector import ElitistGenerationSelector
 from src.util.IndividualsGenerator import IndividualsGenerator
 from src.util.InputFileGenerator import InputFileGenerator
 from src.util.InputGenerator import InputGenerator
+from src.util.RandomGenerationSelector import RandomGenerationSelector
 
 if __name__ == '__main__':
 
@@ -13,9 +14,16 @@ if __name__ == '__main__':
     fr.read()
 
     fitness_evaluator = FitnessEvaluator(fr.weights, fr.max_size)
-    generation_selector = ElitistGenerationSelector(35, fitness_evaluator)
-    generator = IndividualsGenerator(len(fr.weights))
+    individuals_generator = IndividualsGenerator(len(fr.weights))
 
-    plotter = GraphPlotter()
-    benchmark = BenchmarkRunner(fitness_evaluator, generation_selector, generator, plotter)
-    benchmark.run_benchmark()
+    elitist_selector = ElitistGenerationSelector(35, fitness_evaluator)
+    random_selector = RandomGenerationSelector(35, fitness_evaluator)
+
+    b1 = BenchmarkRunner(fitness_evaluator, elitist_selector, individuals_generator, GraphPlotter())
+    b1.run_benchmark()
+
+    # b2 = BenchmarkRunner(fitness_evaluator, random_selector, individuals_generator, GraphPlotter())
+    # b2.run_benchmark()
+
+
+

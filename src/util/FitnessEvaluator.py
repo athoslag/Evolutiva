@@ -8,9 +8,11 @@ class FitnessEvaluator(object):
         self.size = size
 
     def evaluate(self, individual):
-        knapsack_sum = sum([x*y for (x, y) in zip(individual.genotype.dna, self.weights)])
+        found = False
+        knapsack_sum = int(sum([x*y for (x, y) in zip(individual.genotype.dna, self.weights)]))
         if knapsack_sum > self.size:
-            return -1
+            return -1, found
         if knapsack_sum == self.size:
+            found = True
             print([y for (x, y) in zip(individual.genotype.dna, self.weights) if x > 0])
-        return knapsack_sum
+        return knapsack_sum, found

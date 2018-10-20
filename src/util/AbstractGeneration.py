@@ -9,13 +9,17 @@ class AbstractGeneration(object):
         self.evaluator = evaluator
         self.t_max = t_max
         self.r_rate = recombination_rate
+        self.max_fitness = -1
+        self.found = False
 
     def evaluate_generation(self, individuals):
         pop_fitness = []
         for individual in individuals:
-            fitness = self.evaluator.evaluate(individual)
+            fitness, found = self.evaluator.evaluate(individual)
             wrapper = IndividualScoreWrapper(individual, fitness)
             pop_fitness.append(wrapper)
+            self.found = self.found or found
+        self.max_fitness = max([i.score for i in pop_fitness])
         return pop_fitness
 
     def next_generation(self, individuals):
