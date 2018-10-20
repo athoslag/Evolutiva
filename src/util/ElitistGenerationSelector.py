@@ -4,8 +4,11 @@ from src.domain.Individual import Individual
 from src.util.AbstractGeneration import AbstractGeneration
 
 '''
-Classe de teste 1 para selecionar a próxima geração da população. Baseado no método da roleta com os
-melhores indivíduos da geração anterior.
+Seletor #1 - Método de seleção elitista
+O princípio é selecionar os n melhores indivíduos da geração atual para cruzá-los com todos os outros,
+na próxima geração. Os n melhores indivíuos são mantidos inalterados, de modo que o algoritmo não precise
+perder tempo re-descobrindo estas soluções.
+
 '''
 class ElitistGenerationSelector(AbstractGeneration):
 
