@@ -16,14 +16,18 @@ class IndividualsGenerator(object):
         pass
 
     def generate_random_individuals(self, popsize):
-
-        if self.individuals:
-            return self.individuals
+        individuals = []
 
         for _ in range(popsize):
             dna = np.random.randint(2, size=self.total_genes)
             genotype = Genotype(dna=dna, m_rate=0.5)
             individual = Individual(genotype)
-            self.individuals.append(individual)
+            individuals.append(individual)
+
+        return individuals
+    
+    def get_individuals(self, popsize):
+        if not self.individuals:
+            self.individuals = self.generate_random_individuals(popsize)
 
         return self.individuals
