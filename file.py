@@ -8,7 +8,7 @@ from src.util.InputGenerator import InputGenerator
 
 
 if __name__ == '__main__':
-	ig = InputGenerator(50, 1200)
+	ig = InputGenerator(50, 700)
 	fg = InputFileGenerator("./teste", ig)
 	fg.generate_file()
 	exit(0)
