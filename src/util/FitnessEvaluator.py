@@ -14,5 +14,7 @@ class FitnessEvaluator(object):
             return -1, found
         if knapsack_sum == self.size:
             found = True
-            print([y for (x, y) in zip(individual.genotype.dna, self.weights) if x > 0])
+            solucao = [y for (x, y) in zip(individual.genotype.dna, self.weights) if x > 0]
+            solucao.sort()
+            print('Solução encontrada: ', solucao)
         return knapsack_sum, found
