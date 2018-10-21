@@ -4,14 +4,17 @@ import numpy as np
 
 class GraphPlotter(object):
 
-    def __init__(self):
-        self.X = []
-        self.Y = []
+	def __init__(self):
+		self.X = []
+		self.Y = []
 
-    def add_data(self, x, y):
-        self.X.append(x)
-        self.Y.append(y)
+	def add_data(self, x, y):
+		self.X.append(x)
+		self.Y.append(y)
 
-    def plot(self):
-        plt.plot(self.X, self.Y)
-        plt.show()
+	def plot(self):
+		plt.plot(self.X, self.Y)
+		plt.ylabel('knapsack value')
+		plt.xlabel('generation')
+		plt.show()
+
