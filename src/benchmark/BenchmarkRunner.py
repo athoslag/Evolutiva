@@ -9,20 +9,13 @@ class BenchmarkRunner(object):
         self.plotter = plotter
 
     def run_benchmark(self):
-        individuals = self.individuals_generator.generate_random_individuals(10)
+        individuals = self.individuals_generator.get_individuals(10)
 
         iteration = 0
-        found = False
-        fitness = -1
-        while iteration < 200000 and not found:
-            if iteration % 100 == 0:
-                print('Iteration ' + str(iteration))
+        while iteration < 5000 and not self.generation_selector.found:
             iteration += 1
             individuals, pop_fitness = self.generation_selector.next_generation(individuals)
-            fitness = max([i.score for i in pop_fitness])
-            if fitness > 0:
-                self.plotter.add_data(iteration, fitness)
-            found = fitness == self.fitness_evaluator.size
+            self.plotter.add_data(iteration, pop_fitness)
 
-        self.plotter.add_data(iteration, fitness)
-        self.plotter.plot()
+        print('Total de iterações ', iteration)
+        self.plotter.add_data(iteration, pop_fitness)
