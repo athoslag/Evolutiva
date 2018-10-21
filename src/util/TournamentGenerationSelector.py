@@ -18,18 +18,24 @@ class TournamentGenerationSelector(AbstractGeneration):
     def next_generation(self, individuals):
 
         pop_fitness = self.evaluate_generation(individuals)
-        participants = pop_fitness
-        pop_set = set(pop_fitness)
+        
+        # creates a randomized copy of the population
+        current_fitness = pop_fitness
+        random.shuffle(current_fitness)
 
+        # configures the parameters of the tournaments
         tournament_count = int(pow(self.popsize, 0.5))
         tournament_participants = 2
         tournament_fitness = []
 
         for tournament in range(tournament_count):
-            participants.clear()
+            participants = []
+            # selects each of the participants of the tournament
             for p in range(tournament_participants):
-                participants.append(pop_set.pop())
+                participants.append(current_fitness.pop())
+                random.shuffle(current_fitness)
 
+            # selects the best participant of the tournament
             selected = sorted(participants, key=operator.attrgetter('score'), reverse=True)[0]
             tournament_fitness.append(selected)
 
